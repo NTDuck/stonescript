@@ -1,0 +1,93 @@
+// /* Contants */
+// // Locations
+// var ROCKY_PLATEAU_LOCATION_ID = "rocky_plateau"
+// var DEADWOOD_CANYON_LOCATION_ID = "deadwood_valley"
+// var CAVES_OF_FEAR_LOCATION_ID = "caustic_caves"
+// var MUSHROOM_FOREST_LOCATION_ID = "fungus_forest"
+// var HAUNTED_HALLS_LOCATION_ID = "undead_crypt"
+// var BOILING_MINE_LOCATION_ID = "bronze_mine"
+// var ICY_RIDGE_LOCATION_ID = "icy_ridge"
+// var TEMPLE_LOCATION_ID = "temple"
+// 
+// // Item Pairs
+// var PICKUP_ITEM_PAIR = createItemPair("star_stone", "sight_stone")
+// >`0,1,L: "@PICKUP_ITEM_PAIR[0]@"
+// >`0,2,R: "@PICKUP_ITEM_PAIR[1]@"
+// var ROCKY_PLATEAU_HARVEST_ITEM_PAIR = createItemPair("shovel", "shovel")
+// var DEADWOOD_CANYON_HARVEST_ITEM_PAIR = createItemPair("star_stone", "hatchet")
+// var MOVEMENT_SPEED_AND_HEAL_OUT_OF_COMBAT_ITEM_PAIR = createItemPair("triskelion_stone", "ouroboros_stone")
+// 
+// // Ranges
+// var PICKUP_RANGE = 8
+// var HARVESTIBLE_RANGE = 8
+// var COMBAT_RANGE = 22   // Crossbow range
+// 
+// /* Utilities */
+// // Abstract Item Pairs
+// func createItemPair(leftItem, rightItem)
+//   return [this.leftItem, this.rightItem]
+// 
+// func getCurrentItemPair()
+//   return createItemPair(item.left, item.right)
+// 
+// func equipItemPair(itemPair)
+//   var leftItem = this.itemPair[0]
+//   var rightItem = this.itemPair[1]
+// 
+//   >`0,1,@this.leftItem@
+//   >`0,2,@this.rightItem@
+// 
+//   var isLeftPresent = (string.size(this.leftItem) ! 0)
+//   var isRightPresent = (string.size(this.rightItem) ! 0)
+// 
+//   ?this.isLeftPresent
+//     equip @this.leftItem@
+// 
+//   ?this.isRightPresent
+//     equip @this.rightItem@
+// 
+// // Conditionals
+// func isPlayerNearPickup()
+//   return pickup.distance <= PICKUP_RANGE
+// 
+// func isPlayerNearHarvestible()
+//   return harvest.distance <= HARVESTIBLE_RANGE
+// 
+// func isPlayerOutOfCombat()
+//   return foe.distance >= COMBAT_RANGE
+// 
+// // Concrete Item Pairs
+// func equipPickupItemPair()
+//   equipItemPair(PICKUP_ITEM_PAIR)
+// 
+// func equipHarvestItemPair()
+//   ?loc = @ROCKY_PLATEAU_LOCATION_ID@
+//     equipItemPair(ROCKY_PLATEAU_HARVEST_ITEM_PAIR)
+//   :?loc = @DEADWOOD_CANYON_LOCATION_ID@
+//     equipItemPair(DEADWOOD_CANYON_HARVEST_ITEM_PAIR)
+// 
+// func equipOutOfCombatItemPair()
+//   equipItemPair(MOVEMENT_SPEED_AND_HEAL_OUT_OF_COMBAT_ITEM_PAIR)
+// 
+// // Cosmetics
+// func applyFacialCosmetics()
+//   >( OwO
+// 
+// /* Configurations */
+// 
+// /* Runtime */
+// ?loc.begin
+//   applyFacialCosmetics()
+//   var currentItemPair = getCurrentItemPair()
+// 
+// >`0,3,L: "@currentItemPair[0]@"
+// >`0,4,R: "@currentItemPair[1]@"
+// 
+// ?isPlayerNearPickup()
+//   equipPickupItemPair()
+// :?isPlayerNearHarvestible()
+//   equipHarvestItemPair()
+// :?isPlayerOutOfCombat()
+//   equipOutOfCombatItemPair()
+// :
+//   equipItemPair(currentItemPair)

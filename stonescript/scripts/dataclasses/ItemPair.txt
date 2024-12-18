@@ -1,0 +1,11 @@
+sys.SetFileUrl("https://raw.githubusercontent.com/NTDuck/stonescript/refs/heads/master/scripts/")
+>`0,1,fileUrl = @sys.fileUrl@
+
+var vectFrom = new dataclasses/Vector
+var vectTo = new dataclasses/Vector
+
+vectFrom.init(5, 4)
+vectTo.init(8, 2)
+vectTo.subtract(vectFrom)
+
+>x = @vectTo.x@, y = @vectTo.y@@
